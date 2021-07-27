@@ -1,12 +1,10 @@
-import { useState, useEffect, lazy, Suspense } from 'react';
+import { useState, lazy, Suspense } from 'react';
 
 const [AppHeader, AppContent, AppFooter] = [
   lazy(() => import('./components/AppHeader')),
   lazy(() => import('./components/AppContent')),
   lazy(() => import('./components/AppFooter')),
 ];
-
-
 
 function App() {
   const [items, setItems] = useState([
@@ -16,16 +14,6 @@ function App() {
     { id: 4, checked: false, item: 'Item 4' },
     { id: 5, checked: false, item: 'Item 5' },
   ]); // default
-
-  useEffect(() => {
-    console.log('side Effect');
-    if (items.length) {
-      return console.log('Length is Greater 0');
-    }
-    console.log('Length is less than 0');
-  }, [items]); // usefull to focus render effect
-
-  console.log('main Effect');
 
   const handlerInputChange = (id) => {
     // const listItems = items.map(item => item.id === id ? {...item,checked : !item.checked} : item)
@@ -57,7 +45,7 @@ function App() {
           handleDelete={handleDelete}
           handlerInputChange={handlerInputChange}
         />
-        <AppFooter />
+        <AppFooter itemsLength={items.length} />
       </Suspense>
     </div>
   );

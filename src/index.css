@@ -132,3 +132,25 @@ ul li ::before {
   margin: 5rem auto;
   color: green;
 }
+
+
+
+footer .footer-wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+footer h1 {
+  font-weight: bold;
+  color: blueviolet;
+  font-size: 1.7rem;
+}
+
+footer h1 span {
+  background-color: blueviolet;
+  color: yellow;
+  padding: 0 1rem;
+  border-radius: 5px;
+}
