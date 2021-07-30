@@ -1,10 +1,14 @@
 import React from 'react';
 import ContentList from './ContentList';
+import ContentAddItem from './ContentAddItem';
 
-const AppContent = ({ title, items, handleDelete, handlerInputChange }) => {
+
+const AppContent = ({ title, items, handleDelete, handlerInputChange ,newItem,setNewItem ,handleSubmitForm}) => {
+  
   return (
     <main>
-      <h1>{title}</h1>
+      <ContentAddItem newItem={newItem} setNewItem={setNewItem} handleSubmitForm={handleSubmitForm}/>
+      <h4>{title}</h4>
       {items.length ? (
         <ContentList
           items={items}

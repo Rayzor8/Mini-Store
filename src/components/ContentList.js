@@ -1,9 +1,10 @@
 import React from 'react';
 import { FaTrashAlt } from 'react-icons/fa';
 
+
 const ContentList = ({ items, handleDelete, handlerInputChange }) => {
   return (
-    <ul>
+    <ul className="items-wrapper">
       {items.map((item) => (
         <li className="item" key ={item.id}>
           <input

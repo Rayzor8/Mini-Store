@@ -24,11 +24,12 @@ body{
   justify-content: center;
   margin: auto;
   max-width: 600px;
+  box-shadow: 1px 1px 4px 5px rgba(0,0,0,0.2);
 }
 
 header {
-  background-color: royalblue;
-  color: yellow;
+  background-color: tomato;
+  color: white;
   height: 10vh;
   text-align: center;
   display: flex;
@@ -47,18 +48,6 @@ main {
   text-align: center;
 }
 
-footer{
-  height: 10vh;
-  background-color: tomato;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-footer h1 {
-  font-size: 18px;
-}
 
 button {
   padding: 0.5rem;
@@ -73,6 +62,12 @@ ul {
 
 ul li ::before {
   content: "\200B";
+}
+
+.items-wrapper{
+  overflow-y: scroll;
+  width: 100%;
+  height: 100%;
 }
 
 .item {
@@ -133,7 +128,76 @@ ul li ::before {
   color: green;
 }
 
+.addForm{
+  width: 100%;
+  background-color: white;
+  color: blueviolet;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.5rem;
+}
 
+.addForm label{
+  font-weight: bold;
+  background-color: blueviolet;
+  color: yellow;
+  padding:  0.30rem;
+  border-radius: 5px;
+  text-overflow:clip;
+}
+
+.addForm input[type="text"]{
+  flex-grow: 1;
+  max-width: calc(100% - 50px);
+  min-height: 48%;
+  font-size: 1.2rem;
+  padding: 0.30rem;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid blueviolet;
+  color: yellow;
+  background-color: blueviolet;
+}
+
+.addForm input[type="text"]::placeholder{
+  color: white;
+}
+
+.addForm input[type="text"]:focus,.addForm input[type="text"]:focus-visible{
+  background-color: white;
+  color: blueviolet;
+}
+
+.addForm button{
+  outline: none;
+  border: 1px solid blueviolet;
+  background-color: blueviolet;
+  border-radius: 5px;
+  padding: 0.30rem 0.5rem;
+  color: yellow;
+  transition: 0.3s ease-in-out;
+}
+
+.addForm button:hover{
+  background-color: green;
+  color: white;
+  border: green 1px solid;
+}
+
+footer{
+  height: 10vh;
+  background-color: tomato;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+footer h1 {
+  font-size: 18px;
+}
 
 footer .footer-wrapper{
   display: flex;

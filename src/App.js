@@ -7,13 +7,25 @@ const [AppHeader, AppContent, AppFooter] = [
 ];
 
 function App() {
-  const [items, setItems] = useState([
-    { id: 1, checked: false, item: 'Item 1' },
-    { id: 2, checked: false, item: 'Item 2' },
-    { id: 3, checked: false, item: 'Item 3' },
-    { id: 4, checked: false, item: 'Item 4' },
-    { id: 5, checked: false, item: 'Item 5' },
-  ]); // default
+  const [items, setItems] = useState(JSON.parse(localStorage.getItem('shopping-list'))); // default
+
+  const [newItem, setNewItem] = useState('');
+
+  const addItem = (item) => {
+    const id = items.length ? items[items.length - 1].id + 1 : 1; // find last Index and Increment by 1
+    const myNewItem = { id, checked: false, item };
+    const listItems = [...items, myNewItem]; // spread newItem with the rest items return new array
+    console.log(listItems);
+    setItems(listItems);
+    localStorage.setItem('shopping-list', JSON.stringify(listItems));
+  };
+
+  const handleSubmitForm = (e) => {
+    e.preventDefault();
+    if (!newItem) return; // newItem current stat = '' (empty string)
+    addItem(newItem);
+    setNewItem(''); // clear prev submitted value on input
+  };
 
   const handlerInputChange = (id) => {
     // const listItems = items.map(item => item.id === id ? {...item,checked : !item.checked} : item)
@@ -44,6 +56,9 @@ function App() {
           items={items}
           handleDelete={handleDelete}
           handlerInputChange={handlerInputChange}
+          newItem={newItem}
+          setNewItem={setNewItem}
+          handleSubmitForm={handleSubmitForm}
         />
         <AppFooter itemsLength={items.length} />
       </Suspense>
