@@ -1,4 +1,4 @@
-import { useState, lazy, Suspense } from 'react';
+import { useState, lazy, Suspense ,useEffect} from 'react';
 
 const [AppHeader, AppContent, AppFooter] = [
   lazy(() => import('./components/AppHeader')),
@@ -7,15 +7,20 @@ const [AppHeader, AppContent, AppFooter] = [
 ];
 
 function App() {
-  const [items, setItems] = useState(JSON.parse(localStorage.getItem('shopping-list'))); // default
-
+  const [items, setItems] = useState(JSON.parse(localStorage.getItem('shopping-list')) || []); 
   const [newItem, setNewItem] = useState('');
+  const [searchItem, setSearchItem] = useState('');
+  
+  console.log('1st render')
+  useEffect(()=>{
+    console.log('useEffect Triggered')
+  },[items])
+  console.log('after useEffect')
 
   const addItem = (item) => {
     const id = items.length ? items[items.length - 1].id + 1 : 1; // find last Index and Increment by 1
     const myNewItem = { id, checked: false, item };
     const listItems = [...items, myNewItem]; // spread newItem with the rest items return new array
-    console.log(listItems);
     setItems(listItems);
     localStorage.setItem('shopping-list', JSON.stringify(listItems));
   };
@@ -47,18 +52,25 @@ function App() {
     <h1 className="loader">Loading Bro...&#128522;</h1>
   );
 
+  const itemSearch = items.filter((item) =>
+    item.item.toLowerCase().includes(searchItem.toLowerCase())
+  );
+
   return (
     <div className="App">
       <Suspense fallback={renderLoader()}>
         <AppHeader title="Ray Store" />
         <AppContent
           title="Item List"
-          items={items}
+          items={itemSearch}
           handleDelete={handleDelete}
           handlerInputChange={handlerInputChange}
           newItem={newItem}
           setNewItem={setNewItem}
           handleSubmitForm={handleSubmitForm}
+          searchItem={searchItem}
+          setSearchItem={setSearchItem}
+          setItems={setItems}
         />
         <AppFooter itemsLength={items.length} />
       </Suspense>

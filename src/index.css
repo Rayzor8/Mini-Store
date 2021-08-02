@@ -1,18 +1,23 @@
-*{
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-html{
+html {
   font-size: 14px;
 }
 
-p,h1,h2,h3,h4,h5{
+p,
+h1,
+h2,
+h3,
+h4,
+h5 {
   margin: 5px 1px;
 }
 
-body{
+body {
   width: 100%;
   min-height: 100vh;
   font-family: 'Cascadia Code', sans-serif;
@@ -24,7 +29,7 @@ body{
   justify-content: center;
   margin: auto;
   max-width: 600px;
-  box-shadow: 1px 1px 4px 5px rgba(0,0,0,0.2);
+  box-shadow: 1px 1px 4px 5px rgba(0, 0, 0, 0.2);
 }
 
 header {
@@ -48,7 +53,6 @@ main {
   text-align: center;
 }
 
-
 button {
   padding: 0.5rem;
   margin: 0.2rem;
@@ -61,10 +65,10 @@ ul {
 }
 
 ul li ::before {
-  content: "\200B";
+  content: '\200B';
 }
 
-.items-wrapper{
+.items-wrapper {
   overflow-y: scroll;
   width: 100%;
   height: 100%;
@@ -78,13 +82,19 @@ ul li ::before {
   margin: 0.25rem 0;
   background-color: gold;
   color: blueviolet;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.item label {
+  word-wrap: break-word;
 }
 
 .item:first-child {
   margin: 0;
 }
 
-.item input[type="checkbox"] {
+.item input[type='checkbox'] {
   text-align: center;
   width: 35px;
   min-width: 48px;
@@ -94,8 +104,7 @@ ul li ::before {
   margin-right: 0.5rem;
 }
 
-
-.item input[type="checkbox"]:focus + label {
+.item input[type='checkbox']:focus + label {
   text-decoration: underline;
 }
 
@@ -116,19 +125,19 @@ ul li ::before {
   transition: 0.4s;
 }
 
-.item svg:focus, 
+.item svg:focus,
 .item svg:hover {
   color: red;
   outline: none;
 }
 
-.loader{
+.loader {
   text-align: center;
   margin: 5rem auto;
   color: green;
 }
 
-.addForm{
+.addForm {
   width: 100%;
   background-color: white;
   color: blueviolet;
@@ -139,21 +148,21 @@ ul li ::before {
   padding: 0.5rem;
 }
 
-.addForm label{
+.addForm label {
   font-weight: bold;
   background-color: blueviolet;
   color: yellow;
-  padding:  0.30rem;
+  padding: 0.3rem;
   border-radius: 5px;
-  text-overflow:clip;
+  text-overflow: clip;
 }
 
-.addForm input[type="text"]{
+.addForm input[type='text'] {
   flex-grow: 1;
   max-width: calc(100% - 50px);
   min-height: 48%;
   font-size: 1.2rem;
-  padding: 0.30rem;
+  padding: 0.3rem;
   border-radius: 5px;
   outline: none;
   border: 1px solid blueviolet;
@@ -161,32 +170,96 @@ ul li ::before {
   background-color: blueviolet;
 }
 
-.addForm input[type="text"]::placeholder{
+.addForm input[type='text']::placeholder {
   color: white;
 }
 
-.addForm input[type="text"]:focus,.addForm input[type="text"]:focus-visible{
+.addForm input[type='text']:focus,
+.addForm input[type='text']:focus-visible {
   background-color: white;
   color: blueviolet;
 }
 
-.addForm button{
+.addForm button {
   outline: none;
   border: 1px solid blueviolet;
   background-color: blueviolet;
   border-radius: 5px;
-  padding: 0.30rem 0.5rem;
+  padding: 0.3rem 0.5rem;
   color: yellow;
   transition: 0.3s ease-in-out;
+  cursor: pointer;
 }
 
-.addForm button:hover{
+.addForm button:hover {
   background-color: green;
   color: white;
   border: green 1px solid;
 }
 
-footer{
+.search-wrapper {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 55px;
+  transition: 0.4s linear;
+  margin-bottom: 0.5rem;
+}
+
+.search-wrapper .search-input {
+  display: block;
+  appearance: none;
+  width: 100%;
+
+  border: none;
+  outline: none;
+  border-radius: 50px;
+
+  background-color: #24233a;
+
+  padding: 10px;
+  color: #24233a;
+  font-size: 20px;
+  cursor: pointer;
+  transition: 0.4s linear;
+}
+
+.search-wrapper .search-input::placeholder {
+  color: #24233A;
+}
+
+.search-wrapper .search-btn {
+  position: absolute;
+  right: calc(53px / 2);
+  top: 50%;
+  transform: translate(50%, -50%);
+
+  width: 20px;
+  height: 20px;
+
+  pointer-events: none;
+}
+
+.search-wrapper .search-btn path {
+  fill: #00f494;
+  transition: 0.4s linear;
+}
+
+.search-wrapper:focus-within{
+  max-width: 300px;
+}
+
+.search-wrapper .search-input:focus-within{
+  background-color: #FFF;
+  padding-right: 50px;
+  box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.4);
+}
+
+.search-wrapper .search-btn path:focus-within{
+  fill: #24233A;
+}
+
+footer {
   height: 10vh;
   background-color: tomato;
   color: white;
@@ -199,7 +272,7 @@ footer h1 {
   font-size: 18px;
 }
 
-footer .footer-wrapper{
+footer .footer-wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
