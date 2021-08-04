@@ -259,6 +259,16 @@ ul li ::before {
   fill: #24233A;
 }
 
+.fetch-error{
+  height: 80vh;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  line-height: 80vh;
+  color: #00f494;
+  background-color: #24233a;
+}
+
 footer {
   height: 10vh;
   background-color: tomato;

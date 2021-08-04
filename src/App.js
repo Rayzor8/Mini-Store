@@ -1,4 +1,4 @@
-import { useState, lazy, Suspense ,useEffect} from 'react';
+import { useState, lazy, Suspense, useEffect } from 'react';
 
 const [AppHeader, AppContent, AppFooter] = [
   lazy(() => import('./components/AppHeader')),
@@ -7,22 +7,36 @@ const [AppHeader, AppContent, AppFooter] = [
 ];
 
 function App() {
-  const [items, setItems] = useState(JSON.parse(localStorage.getItem('shopping-list')) || []); 
+  const API_URL = 'http://localhost:3500/items';
+  const [items, setItems] = useState([]);
   const [newItem, setNewItem] = useState('');
   const [searchItem, setSearchItem] = useState('');
-  
-  console.log('1st render')
-  useEffect(()=>{
-    console.log('useEffect Triggered')
-  },[items])
-  console.log('after useEffect')
+  const [fetchError, setFetchError] = useState(null);
+
+  useEffect(() => {
+    console.log('useEffect Triggered');
+
+    const fetchItems = async () => {
+      try {
+        const getResponse = await fetch(API_URL);
+        if (!getResponse.ok) throw Error('failed receive data');
+        const getItems = await getResponse.json();
+        console.log(getItems);
+        setItems(getItems);
+        setFetchError(null);
+      } catch (err) {
+        console.log(err.message);
+        setFetchError(err.message);
+      }
+    };
+    fetchItems();
+  }, []);
 
   const addItem = (item) => {
     const id = items.length ? items[items.length - 1].id + 1 : 1; // find last Index and Increment by 1
     const myNewItem = { id, checked: false, item };
     const listItems = [...items, myNewItem]; // spread newItem with the rest items return new array
     setItems(listItems);
-    localStorage.setItem('shopping-list', JSON.stringify(listItems));
   };
 
   const handleSubmitForm = (e) => {
@@ -39,13 +53,11 @@ function App() {
       return item;
     });
     setItems(checkItemsId); //modify
-    localStorage.setItem('shopping-list', JSON.stringify(checkItemsId));
   };
 
   const handleDelete = (id) => {
     const filterID = items.filter((item) => item.id !== id); //  filter return new array selain item.id yang telah di click ,
     setItems(filterID);
-    localStorage.setItem('shopping-list', JSON.stringify(filterID));
   };
 
   const renderLoader = () => (
@@ -60,18 +72,25 @@ function App() {
     <div className="App">
       <Suspense fallback={renderLoader()}>
         <AppHeader title="Ray Store" />
-        <AppContent
-          title="Item List"
-          items={itemSearch}
-          handleDelete={handleDelete}
-          handlerInputChange={handlerInputChange}
-          newItem={newItem}
-          setNewItem={setNewItem}
-          handleSubmitForm={handleSubmitForm}
-          searchItem={searchItem}
-          setSearchItem={setSearchItem}
-          setItems={setItems}
-        />
+
+        {fetchError && <h1 className="fetch-error">{fetchError}</h1>}
+        
+        {!fetchError && (
+
+          <AppContent
+            title="Item List"
+            items={itemSearch}
+            handleDelete={handleDelete}
+            handlerInputChange={handlerInputChange}
+            newItem={newItem}
+            setNewItem={setNewItem}
+            handleSubmitForm={handleSubmitForm}
+            searchItem={searchItem}
+            setSearchItem={setSearchItem}
+            setItems={setItems}
+          />
+          
+        )}
         <AppFooter itemsLength={items.length} />
       </Suspense>
     </div>
