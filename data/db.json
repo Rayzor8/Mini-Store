@@ -1,41 +1,26 @@
 {
-    "items": [
-        {
-            "id": 1,
-            "checked": false,
-            "item": "Almonds, Unsalted"
-        },
-        {
-            "id": 2,
-            "checked": false,
-            "item": "Pizza"
-        },
-        {
-            "id": 3,
-            "checked": false,
-            "item": "Bread"
-        },
-        {
-            "id": 4,
-            "checked": false,
-            "item": "Orange Mango"
-        }
-    ],
-    "test":[
-        {
-            "id" : 1,
-            "name": "Ray",
-            "join": "Desember"
-        },
-        {
-            "id" : 2,
-            "name": "Tony",
-            "join": "January"
-        },
-        {
-            "id" : 3,
-            "name": "Yatman",
-            "join": "February"
-        }
-    ]
+  "items": [
+    {
+      "id": 1,
+      "checked": false,
+      "item": "first Item"
+    }
+  ],
+  "test": [
+    {
+      "id": 1,
+      "name": "Ray",
+      "join": "Desember"
+    },
+    {
+      "id": 2,
+      "name": "Tony",
+      "join": "January"
+    },
+    {
+      "id": 3,
+      "name": "Yatman",
+      "join": "February"
+    }
+  ]
 }
